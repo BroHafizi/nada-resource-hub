@@ -3,35 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dakwah Digital Resource Hub — Thinkerz Solution</title>
-<meta name="description" content="Pusat rujukan alat AI dan video tutorial untuk peserta bengkel Dakwah Digital Thinkerz Solution.">
+<title>NADA Resource Hub — Thinkerz Solution</title>
+<meta name="description" content="Pusat rujukan tugasan, alat AI dan video tutorial untuk peserta bengkel Dakwah Digital Thinkerz Solution.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    /* Backgrounds */
     --bg:       #0f0f13;
     --surface:  #17171e;
     --surface2: #1e1e28;
     --surface3: #23233a;
 
-    /* Borders */
     --border:   #2a2a38;
     --border2:  #3a3a50;
     --border3:  #4a4a60;
 
-    /* Accent — Purple/Violet */
     --accent:      #6c63ff;
     --accent2:     #a78bfa;
     --accent-glow: rgba(108,99,255,0.15);
     --accent-dim:  rgba(108,99,255,0.08);
 
-    /* Text */
     --text:  #f0eeff;
     --text2: #9b97b8;
     --text3: #5c5878;
 
-    /* Status */
     --green:        #34d399;
     --green-bg:     rgba(52,211,153,0.1);
     --green-border: rgba(52,211,153,0.3);
@@ -64,7 +59,7 @@
   }
 
   .page {
-    max-width: 520px;
+    max-width: 560px;
     margin: 0 auto;
     padding: 20px 16px 40px;
   }
@@ -87,6 +82,14 @@
     background: radial-gradient(circle, var(--accent-glow), transparent 70%);
     pointer-events: none;
   }
+  .header-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+    position: relative;
+    z-index: 1;
+  }
   .badge {
     display: inline-flex;
     align-items: center;
@@ -100,6 +103,32 @@
     border-radius: 20px;
     margin-bottom: 14px;
   }
+
+  /* Lang toggle */
+  .lang-toggle {
+    display: flex;
+    background: var(--surface2);
+    border: 0.5px solid var(--border2);
+    border-radius: 20px;
+    padding: 2px;
+    flex-shrink: 0;
+  }
+  .lang-btn {
+    border: none;
+    background: transparent;
+    color: var(--text3);
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 5px 11px;
+    border-radius: 16px;
+    cursor: pointer;
+  }
+  .lang-btn.active {
+    background: var(--accent);
+    color: #fff;
+  }
+
   .header h1 {
     font-size: 21px;
     font-weight: 700;
@@ -119,7 +148,6 @@
     z-index: 1;
   }
 
-  /* Section label */
   .section-label {
     display: flex;
     align-items: center;
@@ -139,46 +167,94 @@
   }
   .section-label.first { margin-top: 0; }
 
-  /* Category card (main clickable group) */
-  .category {
+  /* ACCORDION */
+  .accordion {
     background: var(--surface);
     border: 0.5px solid var(--border2);
     border-radius: var(--radius-xl);
-    padding: 18px;
-    margin-bottom: 14px;
-    position: relative;
+    margin-bottom: 12px;
     overflow: hidden;
+    position: relative;
   }
-  .category::before {
+  .accordion::before {
     content: "";
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 2px;
     background: linear-gradient(90deg, transparent, rgba(108,99,255,0.5), transparent);
+    opacity: 0;
+    transition: opacity .2s ease;
   }
-  .category-head {
+  .accordion.open::before { opacity: 1; }
+
+  .accordion-head {
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin-bottom: 4px;
+    gap: 13px;
+    padding: 16px 18px;
+    cursor: pointer;
+    user-select: none;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    font-family: var(--font-body);
   }
-  .category-icon {
-    width: 40px; height: 40px;
+  .accordion-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text3);
+    flex-shrink: 0;
+    width: 20px;
+  }
+  .accordion.open .accordion-num { color: var(--accent2); }
+  .accordion-icon-box {
+    width: 38px; height: 38px;
     border-radius: var(--radius);
     background: var(--accent-dim);
     border: 0.5px solid var(--border2);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 19px;
+    font-size: 18px;
     flex-shrink: 0;
   }
-  .category-title { font-size: 15px; font-weight: 700; color: var(--text); }
-  .category-desc { font-size: 12px; color: var(--text2); margin-top: 2px; }
+  .accordion-title-wrap { flex: 1; min-width: 0; }
+  .accordion-title { font-size: 14.5px; font-weight: 700; color: var(--text); }
+  .accordion-sub { font-size: 11.5px; color: var(--text3); margin-top: 1px; }
+  .accordion-chevron {
+    flex-shrink: 0;
+    width: 22px; height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text2);
+    transition: transform .25s ease;
+  }
+  .accordion.open .accordion-chevron { transform: rotate(180deg); color: var(--accent2); }
 
-  .category-body { margin-top: 14px; }
+  .accordion-panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .3s ease;
+  }
+  .accordion.open .accordion-panel { max-height: 2000px; }
+  .accordion-body {
+    padding: 0 18px 18px;
+  }
 
-  /* Single big CTA (for Video Tutorial) */
+  .subsection-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    margin: 14px 0 8px;
+  }
+  .subsection-label.tight { margin-top: 0; }
+
+  /* Big CTA (video tutorial) */
   .btn-cta {
     display: flex;
     align-items: center;
@@ -189,15 +265,14 @@
     color: #fff;
     text-decoration: none;
     font-weight: 600;
-    font-size: 14px;
-    padding: 13px;
+    font-size: 13.5px;
+    padding: 12px;
     border-radius: var(--radius);
     border: none;
-    transition: opacity .15s ease;
   }
   .btn-cta:active { opacity: 0.85; }
 
-  /* Sub-link list (for AI Tools / AI Assistant) */
+  /* Simple link row (webapp / tools) */
   .link-row {
     display: flex;
     align-items: center;
@@ -206,99 +281,43 @@
     background: var(--surface2);
     border: 0.5px solid var(--border2);
     border-radius: var(--radius);
-    padding: 12px 14px;
+    padding: 11px 13px;
     text-decoration: none;
-    margin-bottom: 8px;
-    transition: border-color .15s ease, background .15s ease;
+    margin-bottom: 7px;
   }
   .link-row:last-child { margin-bottom: 0; }
-  .link-row:active { border-color: var(--accent); background: var(--accent-dim); }
-
-  .link-row-left { display: flex; align-items: center; gap: 10px; min-width: 0; }
-  .link-row-emoji { font-size: 17px; flex-shrink: 0; }
-  .link-row-text { min-width: 0; }
-  .link-row-name { font-size: 13.5px; font-weight: 600; color: var(--text); }
-  .link-row-sub { font-size: 11px; color: var(--text3); margin-top: 1px; }
-
+  .link-row-left { display: flex; align-items: center; gap: 9px; min-width: 0; }
+  .link-row-emoji { font-size: 16px; flex-shrink: 0; }
+  .link-row-name { font-size: 13px; font-weight: 600; color: var(--text); }
+  .link-row-sub { font-size: 10.5px; color: var(--text3); margin-top: 1px; }
   .link-row-arrow {
     flex-shrink: 0;
     color: var(--accent2);
-    font-size: 13px;
+    font-size: 12px;
     background: var(--surface3);
     border-radius: 6px;
-    padding: 5px 9px;
+    padding: 4px 8px;
     font-weight: 600;
   }
 
-  /* Dual-platform assistant card (CustomGPT + Gemini Gem) */
-  .assistant-card {
-    background: var(--surface2);
-    border: 0.5px solid var(--border2);
-    border-radius: var(--radius);
-    padding: 12px 14px;
-    margin-bottom: 8px;
+  /* Islamic-tinted row for Thinkerz webapp */
+  .link-row.webapp {
+    border-color: var(--islamic-border);
+    background: var(--islamic-bg);
   }
-  .assistant-card:last-child { margin-bottom: 0; }
-  .assistant-name {
-    font-size: 13.5px;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 9px;
-  }
-  .assistant-platforms {
-    display: flex;
-    gap: 8px;
-  }
-  .platform-btn {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    text-decoration: none;
-    font-size: 12px;
-    font-weight: 600;
-    padding: 8px 10px;
-    border-radius: 8px;
-    border: 0.5px solid var(--border2);
-    background: var(--surface3);
-    color: var(--text);
-    transition: border-color .15s ease;
-  }
-  .platform-btn:active { border-color: var(--accent); }
-  .platform-btn.disabled {
-    color: var(--text3);
-    background: transparent;
-    border: 0.5px dashed var(--border2);
-    pointer-events: none;
-  }
+  .link-row.webapp .link-row-arrow { color: var(--islamic-light); background: rgba(123,94,167,0.2); }
 
-  .subsection-label {
-    font-size: 10px;
-    font-weight: 700;
-    color: var(--text3);
-    text-transform: uppercase;
-    letter-spacing: .06em;
-    margin: 4px 0 8px;
-  }
-  .subsection-label.spaced { margin-top: 16px; }
-
-  /* Multi-platform assistant row (ChatGPT + Gemini chips) */
+  /* AI Assistant dual-chip row */
   .assist-row {
     background: var(--surface2);
     border: 0.5px solid var(--border2);
     border-radius: var(--radius);
-    padding: 12px 14px;
-    margin-bottom: 8px;
+    padding: 11px 13px;
+    margin-bottom: 7px;
   }
   .assist-row:last-child { margin-bottom: 0; }
-  .assist-row-name {
-    font-size: 13.5px;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 9px;
-  }
-  .assist-chips { display: flex; gap: 8px; }
+  .assist-row-name { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
+  .assist-chips { display: flex; gap: 7px; }
   .chip-link {
     flex: 1;
     display: flex;
@@ -306,31 +325,56 @@
     justify-content: center;
     gap: 5px;
     text-decoration: none;
-    font-size: 12px;
+    font-size: 11.5px;
     font-weight: 600;
-    padding: 8px 10px;
-    border-radius: 20px;
-    border: 1px solid var(--accent);
-    background: var(--accent-glow);
-    color: var(--accent2);
+    padding: 7px 8px;
+    border-radius: 8px;
+    border: 0.5px solid var(--border2);
+    background: var(--surface3);
+    color: var(--text);
   }
-  .chip-link:active { opacity: 0.8; }
   .chip-link.disabled {
-    border: dashed 0.5px var(--border2);
-    background: transparent;
     color: var(--text3);
-    pointer-events: none;
+    background: transparent;
+    border: 0.5px dashed var(--border2);
   }
 
-  /* Placeholder note */
+  /* Tools grid — compact chip list */
+  .tools-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+  }
+  .tool-chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    background: var(--surface2);
+    border: 0.5px solid var(--border2);
+    color: var(--text);
+    font-size: 12.5px;
+    font-weight: 600;
+    padding: 8px 12px;
+    border-radius: 20px;
+  }
+
   .placeholder-note {
-    font-size: 10.5px;
+    font-size: 10px;
     color: var(--text3);
     background: var(--surface2);
     border: 0.5px dashed var(--border2);
     border-radius: var(--radius);
-    padding: 8px 10px;
-    margin-top: 10px;
+    padding: 7px 9px;
+    margin-top: 9px;
+  }
+
+  /* Extra assistant (not tied to a task) */
+  .extra-card {
+    background: var(--surface);
+    border: 0.5px solid var(--border2);
+    border-radius: var(--radius-xl);
+    padding: 14px 16px;
   }
 
   /* Footer */
@@ -362,191 +406,209 @@
 
   <!-- HEADER -->
   <div class="header">
-    <div class="badge">🕌 Bengkel Dakwah Digital</div>
+    <div class="header-top">
+      <div class="badge" data-bm="🕌 Bengkel Dakwah Digital" data-en="🕌 Digital Dakwah Workshop"></div>
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang-btn="bm" onclick="setLang('bm')">BM</button>
+        <button class="lang-btn" data-lang-btn="en" onclick="setLang('en')">EN</button>
+      </div>
+    </div>
     <h1>NADA Resource Hub</h1>
-    <p>Semua alat AI &amp; video tutorial bengkel — rujuk sepanjang kelas dan selepas kelas.</p>
+    <p data-bm="Pilih task video yang nak dibuat — semua tutorial, AI Assistant & tools ada dalam satu tempat." data-en="Pick the video task you want to make — all tutorials, AI Assistants & tools in one place."></p>
   </div>
 
-  <!-- 1. VIDEO TUTORIAL -->
-  <div class="section-label first">Panduan</div>
-  <div class="category">
-    <div class="category-head">
-      <div class="category-icon">📹</div>
-      <div>
-        <div class="category-title">Video Tutorial</div>
-        <div class="category-desc">Semua video panduan langkah demi langkah bengkel</div>
-      </div>
-    </div>
-    <div class="category-body">
-      <a href="https://www.youtube.com/playlist?list=PLQO_Z_Pg01Wg" target="_blank" rel="noopener" class="btn-cta">▶ Tonton Playlist Tutorial</a>
-    </div>
-  </div>
+  <!-- TASK ACCORDIONS -->
+  <div class="section-label first" data-bm="Pilih Task" data-en="Choose Task"></div>
 
-  <!-- 2. AI TOOLS -->
-  <div class="section-label">Alat AI Rasmi</div>
-  <div class="category">
-    <div class="category-head">
-      <div class="category-icon">⚙️</div>
-      <div>
-        <div class="category-title">AI Tools</div>
-        <div class="category-desc">Platform AI rasmi yang digunakan dalam bengkel</div>
+  <!-- 1. FACELESS VIDEO -->
+  <div class="accordion" id="acc-1">
+    <button class="accordion-head" onclick="toggleAccordion('acc-1')">
+      <span class="accordion-num">01</span>
+      <span class="accordion-icon-box">🎥</span>
+      <span class="accordion-title-wrap">
+        <div class="accordion-title" data-bm="Faceless Video" data-en="Faceless Video"></div>
+        <div class="accordion-sub" data-bm="Video tanpa wajah — B-roll & voice over" data-en="No on-camera face — B-roll & voice over"></div>
+      </span>
+      <span class="accordion-chevron">▾</span>
+    </button>
+    <div class="accordion-panel">
+      <div class="accordion-body">
+
+        <div class="subsection-label tight" data-bm="Video Tutorial" data-en="Video Tutorial"></div>
+        <a href="https://youtu.be/HWhKnKzA7IU" target="_blank" rel="noopener" class="btn-cta">
+          <span data-bm="▶ Tonton Tutorial Faceless Video" data-en="▶ Watch Faceless Video Tutorial"></span>
+        </a>
+
+        <div class="subsection-label" data-bm="AI Assistant" data-en="AI Assistant"></div>
+        <div class="assist-row">
+          <div class="assist-row-name">🎬 Da'wah Video Builder</div>
+          <div class="assist-chips">
+            <a href="https://chatgpt.com/g/g-69fda098f3308191995df53df6797b03-ai-assistant-video-dakwah-builder" target="_blank" rel="noopener" class="chip-link">💬 ChatGPT</a>
+            <a href="https://gemini.google.com/gem/1qf-xpj71jQbAhgV6sFCYq_quOyhjOQOh?usp=sharing" target="_blank" rel="noopener" class="chip-link">✨ Gemini</a>
+          </div>
+        </div>
+
+        <div class="subsection-label" data-bm="Tools" data-en="Tools"></div>
+        <div class="tools-grid">
+          <a href="https://chatgpt.com/" target="_blank" rel="noopener" class="tool-chip">💬 ChatGPT</a>
+          <a href="https://workspace.google.com/intl/en_my/products/vids/" target="_blank" rel="noopener" class="tool-chip">🎞️ Google Vids</a>
+          <a href="https://aistudio.google.com/generate-speech" target="_blank" rel="noopener" class="tool-chip">🧪 Google AI Studio</a>
+        </div>
+
       </div>
-    </div>
-    <div class="category-body">
-      <a href="https://chatgpt.com/" target="_blank" rel="noopener" class="link-row">
-        <div class="link-row-left">
-          <span class="link-row-emoji">💬</span>
-          <div class="link-row-text">
-            <div class="link-row-name">ChatGPT</div>
-            <div class="link-row-sub">chatgpt.com</div>
-          </div>
-        </div>
-        <span class="link-row-arrow">Buka →</span>
-      </a>
-      <a href="https://gemini.google.com/app" target="_blank" rel="noopener" class="link-row">
-        <div class="link-row-left">
-          <span class="link-row-emoji">✨</span>
-          <div class="link-row-text">
-            <div class="link-row-name">Gemini</div>
-            <div class="link-row-sub">gemini.google.com</div>
-          </div>
-        </div>
-        <span class="link-row-arrow">Buka →</span>
-      </a>
-      <a href="https://labs.google/fx/tools/flow" target="_blank" rel="noopener" class="link-row">
-        <div class="link-row-left">
-          <span class="link-row-emoji">🎬</span>
-          <div class="link-row-text">
-            <div class="link-row-name">Google Flow</div>
-            <div class="link-row-sub">labs.google/fx/tools/flow</div>
-          </div>
-        </div>
-        <span class="link-row-arrow">Buka →</span>
-      </a>
-      <a href="https://aistudio.google.com/generate-speech" target="_blank" rel="noopener" class="link-row">
-        <div class="link-row-left">
-          <span class="link-row-emoji">🧪</span>
-          <div class="link-row-text">
-            <div class="link-row-name">Google AI Studio</div>
-            <div class="link-row-sub">aistudio.google.com</div>
-          </div>
-        </div>
-        <span class="link-row-arrow">Buka →</span>
-      </a>
-      <a href="https://suno.com/" target="_blank" rel="noopener" class="link-row">
-        <div class="link-row-left">
-          <span class="link-row-emoji">🎵</span>
-          <div class="link-row-text">
-            <div class="link-row-name">Suno</div>
-            <div class="link-row-sub">suno.com</div>
-          </div>
-        </div>
-        <span class="link-row-arrow">Buka →</span>
-      </a>
-      <a href="https://workspace.google.com/intl/en_my/products/vids/" target="_blank" rel="noopener" class="link-row">
-        <div class="link-row-left">
-          <span class="link-row-emoji">🎞️</span>
-          <div class="link-row-text">
-            <div class="link-row-name">Google Vids</div>
-            <div class="link-row-sub">workspace.google.com/vids</div>
-          </div>
-        </div>
-        <span class="link-row-arrow">Buka →</span>
-      </a>
-      <a href="https://elevenlabs.io/" target="_blank" rel="noopener" class="link-row">
-        <div class="link-row-left">
-          <span class="link-row-emoji">🔊</span>
-          <div class="link-row-text">
-            <div class="link-row-name">ElevenLabs</div>
-            <div class="link-row-sub">elevenlabs.io</div>
-          </div>
-        </div>
-        <span class="link-row-arrow">Buka →</span>
-      </a>
     </div>
   </div>
 
-  <!-- 3. AI ASSISTANT -->
-  <div class="section-label">Buatan Thinkerz</div>
-  <div class="category">
-    <div class="category-head">
-      <div class="category-icon">🤖</div>
-      <div>
-        <div class="category-title">AI Assistant</div>
-        <div class="category-desc">CustomGPT &amp; Gems khas Thinkerz Solution untuk dakwah</div>
-      </div>
-    </div>
-    <div class="category-body">
-      <div class="assist-row">
-        <div class="assist-row-name">📝 Talking Head Skrip Generator</div>
-        <div class="assist-chips">
-          <a href="https://chatgpt.com/g/g-6a6369bf90fc819198ecc5fb89db9d44-ai-assistant-talking-head-script-generator" target="_blank" rel="noopener" class="chip-link">💬 ChatGPT</a>
-          <a href="https://gemini.google.com/gem/1uh8T6bpFDOhNxcrrTQ19e0FCdYmGVmZO?usp=sharing" target="_blank" rel="noopener" class="chip-link">✨ Gemini</a>
+  <!-- 2. TALKING HEAD -->
+  <div class="accordion" id="acc-2">
+    <button class="accordion-head" onclick="toggleAccordion('acc-2')">
+      <span class="accordion-num">02</span>
+      <span class="accordion-icon-box">🗣️</span>
+      <span class="accordion-title-wrap">
+        <div class="accordion-title" data-bm="Talking Head" data-en="Talking Head"></div>
+        <div class="accordion-sub" data-bm="Video wajah bercakap — avatar AI" data-en="On-camera talking avatar — AI avatar"></div>
+      </span>
+      <span class="accordion-chevron">▾</span>
+    </button>
+    <div class="accordion-panel">
+      <div class="accordion-body">
+
+        <div class="subsection-label tight" data-bm="Video Tutorial" data-en="Video Tutorial"></div>
+        <a href="https://youtu.be/6R3cADKegEw" target="_blank" rel="noopener" class="btn-cta">
+          <span data-bm="▶ Tonton Tutorial Talking Head" data-en="▶ Watch Talking Head Tutorial"></span>
+        </a>
+
+        <div class="subsection-label" data-bm="Webapp Thinkerz" data-en="Thinkerz Webapp"></div>
+        <a href="https://dawah-avatar-generator.vercel.app/" target="_blank" rel="noopener" class="link-row webapp">
+          <div class="link-row-left">
+            <span class="link-row-emoji">🧕</span>
+            <div>
+              <div class="link-row-name">Da'wah AI Avatar Generator</div>
+              <div class="link-row-sub" data-bm="Jana prompt avatar Syariah-compliant" data-en="Generate Shariah-compliant avatar prompt"></div>
+            </div>
+          </div>
+          <span class="link-row-arrow" data-bm="Buka →" data-en="Open →"></span>
+        </a>
+
+        <div class="subsection-label" data-bm="AI Assistant" data-en="AI Assistant"></div>
+        <div class="assist-row">
+          <div class="assist-row-name">📝 Talking Head Script Generator</div>
+          <div class="assist-chips">
+            <a href="https://chatgpt.com/g/g-6a6369bf90fc819198ecc5fb89db9d44-ai-assistant-talking-head-script-generator" target="_blank" rel="noopener" class="chip-link">💬 ChatGPT</a>
+            <a href="https://gemini.google.com/gem/1uh8T6bpFDOhNxcrrTQ19e0FCdYmGVmZO?usp=sharing" target="_blank" rel="noopener" class="chip-link">✨ Gemini</a>
+          </div>
         </div>
-      </div>
-      <div class="assist-row">
-        <div class="assist-row-name">🎬 Dakwah Video Builder</div>
-        <div class="assist-chips">
-          <a href="https://chatgpt.com/g/g-69fda098f3308191995df53df6797b03-ai-assistant-video-dakwah-builder" target="_blank" rel="noopener" class="chip-link">💬 ChatGPT</a>
-          <a href="https://gemini.google.com/gem/1qf-xpj71jQbAhgV6sFCYq_quOyhjOQOh?usp=sharing" target="_blank" rel="noopener" class="chip-link">✨ Gemini</a>
+
+        <div class="subsection-label" data-bm="Tools" data-en="Tools"></div>
+        <div class="tools-grid">
+          <a href="https://chatgpt.com/" target="_blank" rel="noopener" class="tool-chip">💬 ChatGPT</a>
+          <a href="https://labs.google/fx/tools/flow" target="_blank" rel="noopener" class="tool-chip">🎬 Google Flow</a>
+          <a href="https://capcut.com" target="_blank" rel="noopener" class="tool-chip">✂️ CapCut</a>
         </div>
+
       </div>
-      <div class="assist-row">
-        <div class="assist-row-name">🖼️ Da'wah Comic Generator</div>
-        <div class="assist-chips">
-          <a href="https://chatgpt.com/g/g-6a0c8f8b030c8191bf17a01278ff14db-ai-assistant-da-wah-comic-generator" target="_blank" rel="noopener" class="chip-link">💬 ChatGPT</a>
-          <span class="chip-link disabled">✨ Gemini (belum ada)</span>
-        </div>
-      </div>
-      <div class="assist-row">
-        <div class="assist-row-name">🎵 Da'wah Music Creator</div>
-        <div class="assist-chips">
-          <a href="https://chatgpt.com/g/g-69ff587349c88191b70d3d57eb835dac-ai-assistant-da-wah-music-creator" target="_blank" rel="noopener" class="chip-link">💬 ChatGPT</a>
-          <span class="chip-link disabled">✨ Gemini (belum ada)</span>
-        </div>
-      </div>
-      <div class="assist-row">
-        <div class="assist-row-name">✍️ Copywriting Builder</div>
-        <div class="assist-chips">
-          <a href="https://chatgpt.com/g/g-6a74a124c17c8191aadfdf13a9a3f6dd-nada-copywriting-builder" target="_blank" rel="noopener" class="chip-link">💬 ChatGPT</a>
-          <span class="chip-link disabled">✨ Gemini (belum ada)</span>
-        </div>
-      </div>
-      <div class="placeholder-note">⚠️ Lagi assistant akan ditambah. Chip "Gemini" akan aktif bila link Gems dihantar.</div>
     </div>
   </div>
 
-  <!-- 4. WEBAPP THINKERZ -->
-  <div class="section-label">Webapp Thinkerz Solution</div>
-  <div class="category">
-    <div class="category-head">
-      <div class="category-icon">🛠️</div>
-      <div>
-        <div class="category-title">Webapp Thinkerz</div>
-        <div class="category-desc">Alat khas buatan Thinkerz Solution — zero API cost</div>
+  <!-- 3. DA'WAH COMIC -->
+  <div class="accordion" id="acc-3">
+    <button class="accordion-head" onclick="toggleAccordion('acc-3')">
+      <span class="accordion-num">03</span>
+      <span class="accordion-icon-box">🖼️</span>
+      <span class="accordion-title-wrap">
+        <div class="accordion-title" data-bm="Da'wah Comic" data-en="Da'wah Comic"></div>
+        <div class="accordion-sub" data-bm="Video komik bergambar" data-en="Illustrated comic-style video"></div>
+      </span>
+      <span class="accordion-chevron">▾</span>
+    </button>
+    <div class="accordion-panel">
+      <div class="accordion-body">
+
+        <div class="subsection-label tight" data-bm="Video Tutorial" data-en="Video Tutorial"></div>
+        <a href="#" target="_blank" rel="noopener" class="btn-cta">
+          <span data-bm="▶ Tonton Tutorial Da'wah Comic" data-en="▶ Watch Da'wah Comic Tutorial"></span>
+        </a>
+        <div class="placeholder-note" data-bm="⚠️ Placeholder — ganti dengan link video sebenar." data-en="⚠️ Placeholder — replace with actual video link."></div>
+
+        <div class="subsection-label" data-bm="Webapp Thinkerz" data-en="Thinkerz Webapp"></div>
+        <a href="https://dawah-comic-studio-4odq.vercel.app/" target="_blank" rel="noopener" class="link-row webapp">
+          <div class="link-row-left">
+            <span class="link-row-emoji">🎨</span>
+            <div>
+              <div class="link-row-name">Da'wah Comic Studio</div>
+              <div class="link-row-sub" data-bm="Jana prompt gambar komik 10 gaya" data-en="Generate comic image prompts, 10 styles"></div>
+            </div>
+          </div>
+          <span class="link-row-arrow" data-bm="Buka →" data-en="Open →"></span>
+        </a>
+
+        <div class="subsection-label" data-bm="AI Assistant" data-en="AI Assistant"></div>
+        <div class="assist-row">
+          <div class="assist-row-name">🖼️ Da'wah Comic Generator</div>
+          <div class="assist-chips">
+            <a href="https://chatgpt.com/g/g-6a0c8f8b030c8191bf17a01278ff14db-ai-assistant-da-wah-comic-generator" target="_blank" rel="noopener" class="chip-link">💬 ChatGPT</a>
+            <span class="chip-link disabled" data-bm="✨ Gemini (belum ada)" data-en="✨ Gemini (coming soon)"></span>
+          </div>
+        </div>
+
+        <div class="subsection-label" data-bm="Tools" data-en="Tools"></div>
+        <div class="tools-grid">
+          <a href="https://chatgpt.com/" target="_blank" rel="noopener" class="tool-chip">💬 ChatGPT</a>
+          <a href="https://labs.google/fx/tools/flow" target="_blank" rel="noopener" class="tool-chip">🎬 Google Flow</a>
+        </div>
+
       </div>
     </div>
-    <div class="category-body">
-      <a href="https://dawah-avatar-generator.vercel.app/" target="_blank" rel="noopener" class="link-row">
-        <div class="link-row-left">
-          <span class="link-row-emoji">🧕</span>
-          <div class="link-row-text">
-            <div class="link-row-name">Da'wah AI Avatar Generator</div>
-            <div class="link-row-sub">Prompt talking-head Syariah-compliant</div>
+  </div>
+
+  <!-- 4. DA'WAH MUSIC -->
+  <div class="accordion" id="acc-4">
+    <button class="accordion-head" onclick="toggleAccordion('acc-4')">
+      <span class="accordion-num">04</span>
+      <span class="accordion-icon-box">🎵</span>
+      <span class="accordion-title-wrap">
+        <div class="accordion-title" data-bm="Da'wah Music" data-en="Da'wah Music"></div>
+        <div class="accordion-sub" data-bm="Nasyid & audio dakwah" data-en="Nasheed & dakwah audio"></div>
+      </span>
+      <span class="accordion-chevron">▾</span>
+    </button>
+    <div class="accordion-panel">
+      <div class="accordion-body">
+
+        <div class="subsection-label tight" data-bm="Video Tutorial" data-en="Video Tutorial"></div>
+        <a href="#" target="_blank" rel="noopener" class="btn-cta">
+          <span data-bm="▶ Tonton Tutorial Da'wah Music" data-en="▶ Watch Da'wah Music Tutorial"></span>
+        </a>
+        <div class="placeholder-note" data-bm="⚠️ Placeholder — ganti dengan link video sebenar." data-en="⚠️ Placeholder — replace with actual video link."></div>
+
+        <div class="subsection-label" data-bm="AI Assistant" data-en="AI Assistant"></div>
+        <div class="assist-row">
+          <div class="assist-row-name">🎵 Da'wah Music Creator</div>
+          <div class="assist-chips">
+            <a href="https://chatgpt.com/g/g-69ff587349c88191b70d3d57eb835dac-ai-assistant-da-wah-music-creator" target="_blank" rel="noopener" class="chip-link">💬 ChatGPT</a>
+            <span class="chip-link disabled" data-bm="✨ Gemini (belum ada)" data-en="✨ Gemini (coming soon)"></span>
           </div>
         </div>
-        <span class="link-row-arrow">Buka →</span>
-      </a>
-      <a href="https://dawah-comic-studio-4odq.vercel.app/" target="_blank" rel="noopener" class="link-row">
-        <div class="link-row-left">
-          <span class="link-row-emoji">💥</span>
-          <div class="link-row-text">
-            <div class="link-row-name">Dakwah Comic Studio</div>
-            <div class="link-row-sub">Prompt komik dakwah AI</div>
-          </div>
+
+        <div class="subsection-label" data-bm="Tools" data-en="Tools"></div>
+        <div class="tools-grid">
+          <a href="https://chatgpt.com/" target="_blank" rel="noopener" class="tool-chip">💬 ChatGPT</a>
+          <a href="https://suno.com/" target="_blank" rel="noopener" class="tool-chip">🎵 Suno</a>
         </div>
-        <span class="link-row-arrow">Buka →</span>
-      </a>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- EXTRA: not tied to a specific task -->
+  <div class="section-label" data-bm="AI Assistant Lain" data-en="Other AI Assistants"></div>
+  <div class="extra-card">
+    <div class="assist-row" style="margin-bottom:0;">
+      <div class="assist-row-name">✍️ Copywriting Builder</div>
+      <div class="assist-chips">
+        <a href="https://chatgpt.com/g/g-6a74a124c17c8191aadfdf13a9a3f6dd-nada-copywriting-builder" target="_blank" rel="noopener" class="chip-link">💬 ChatGPT</a>
+        <span class="chip-link disabled" data-bm="✨ Gemini (belum ada)" data-en="✨ Gemini (coming soon)"></span>
+      </div>
     </div>
   </div>
 
@@ -556,10 +618,41 @@
     <div class="footer-tag">Empowering Trainers with AI Tools</div>
     <div class="footer-url">www.ThinkerzSolution.com</div>
     <div class="footer-divider"></div>
-    <div class="footer-meta">© 2026 Thinkerz Solution. All rights reserved. ● v1.0.0 ● NADA Resource Hub</div>
+    <div class="footer-meta">© 2026 Thinkerz Solution. All rights reserved. ● v2.0.0 ● NADA Resource Hub</div>
   </div>
 
 </div>
+
+<script>
+  // Accordion — only one open at a time
+  function toggleAccordion(id) {
+    document.querySelectorAll('.accordion').forEach(function(acc) {
+      if (acc.id === id) {
+        acc.classList.toggle('open');
+      } else {
+        acc.classList.remove('open');
+      }
+    });
+  }
+
+  // Bilingual toggle
+  function setLang(lang) {
+    document.querySelectorAll('[data-bm]').forEach(function(el) {
+      el.textContent = lang === 'bm' ? el.getAttribute('data-bm') : el.getAttribute('data-en');
+    });
+    document.querySelectorAll('[data-lang-btn]').forEach(function(btn) {
+      btn.classList.toggle('active', btn.getAttribute('data-lang-btn') === lang);
+    });
+    localStorage.setItem('nada-lang', lang);
+  }
+
+  // Init text on load (default BM) — data-bm content is used as initial textContent
+  document.addEventListener('DOMContentLoaded', function() {
+    setLang('bm');
+    // Open first accordion by default
+    document.getElementById('acc-1').classList.add('open');
+  });
+</script>
 
 </body>
 </html>
