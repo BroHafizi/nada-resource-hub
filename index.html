@@ -417,13 +417,58 @@
     <p data-bm="Pilih task video yang nak dibuat — semua tutorial, AI Assistant & tools ada dalam satu tempat." data-en="Pick the video task you want to make — all tutorials, AI Assistants & tools in one place."></p>
   </div>
 
+  <!-- WORKSHEET LINK -->
+  <a href="https://drive.google.com/drive/folders/1bu4fa3kOwimyopLom9H5zKDJyjVos1SY?usp=sharing" target="_blank" rel="noopener" class="link-row webapp" style="margin-bottom: 18px; padding: 14px 16px;">
+    <div class="link-row-left">
+      <span class="link-row-emoji" style="font-size:19px;">📂</span>
+      <div>
+        <div class="link-row-name" style="font-size:14px;" data-bm="Worksheet & Bahan Pembelajaran" data-en="Worksheet & Learning Materials"></div>
+        <div class="link-row-sub" data-bm="Slide, worksheet & dokumen bengkel (Google Drive)" data-en="Slides, worksheets & workshop docs (Google Drive)"></div>
+      </div>
+    </div>
+    <span class="link-row-arrow" data-bm="Buka →" data-en="Open →"></span>
+  </a>
+
   <!-- TASK ACCORDIONS -->
   <div class="section-label first" data-bm="Pilih Task" data-en="Choose Task"></div>
 
-  <!-- 1. FACELESS VIDEO -->
+  <!-- 1. SCRIPT BUILDER -->
+  <div class="accordion" id="acc-0">
+    <button class="accordion-head" onclick="toggleAccordion('acc-0')">
+      <span class="accordion-num">01</span>
+      <span class="accordion-icon-box">📜</span>
+      <span class="accordion-title-wrap">
+        <div class="accordion-title" data-bm="Script Builder" data-en="Script Builder"></div>
+        <div class="accordion-sub" data-bm="Bina skrip dakwah sebelum mula video" data-en="Build your dakwah script before starting a video"></div>
+      </span>
+      <span class="accordion-chevron">▾</span>
+    </button>
+    <div class="accordion-panel">
+      <div class="accordion-body">
+
+        <div class="subsection-label tight" data-bm="Video Tutorial" data-en="Video Tutorial"></div>
+        <a href="#" target="_blank" rel="noopener" class="btn-cta">
+          <span data-bm="▶ Tonton Tutorial Script Builder" data-en="▶ Watch Script Builder Tutorial"></span>
+        </a>
+        <div class="placeholder-note" data-bm="⚠️ Placeholder — ganti dengan link video sebenar." data-en="⚠️ Placeholder — replace with actual video link."></div>
+
+        <div class="subsection-label" data-bm="AI Assistant" data-en="AI Assistant"></div>
+        <div class="assist-row" style="margin-bottom:0;">
+          <div class="assist-row-name">📜 Script Builder</div>
+          <div class="assist-chips">
+            <a href="https://chatgpt.com/g/g-6a7d93c801408191b7fd8099e86970f5-nada-script-builder" target="_blank" rel="noopener" class="chip-link">💬 ChatGPT</a>
+            <span class="chip-link disabled" data-bm="✨ Gemini (belum ada)" data-en="✨ Gemini (coming soon)"></span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. FACELESS VIDEO -->
   <div class="accordion" id="acc-1">
     <button class="accordion-head" onclick="toggleAccordion('acc-1')">
-      <span class="accordion-num">01</span>
+      <span class="accordion-num">02</span>
       <span class="accordion-icon-box">🎥</span>
       <span class="accordion-title-wrap">
         <div class="accordion-title" data-bm="Faceless Video" data-en="Faceless Video"></div>
@@ -462,7 +507,7 @@
   <!-- 2. TALKING HEAD -->
   <div class="accordion" id="acc-2">
     <button class="accordion-head" onclick="toggleAccordion('acc-2')">
-      <span class="accordion-num">02</span>
+      <span class="accordion-num">03</span>
       <span class="accordion-icon-box">🗣️</span>
       <span class="accordion-title-wrap">
         <div class="accordion-title" data-bm="Talking Head" data-en="Talking Head"></div>
@@ -513,7 +558,7 @@
   <!-- 3. DA'WAH COMIC -->
   <div class="accordion" id="acc-3">
     <button class="accordion-head" onclick="toggleAccordion('acc-3')">
-      <span class="accordion-num">03</span>
+      <span class="accordion-num">04</span>
       <span class="accordion-icon-box">🖼️</span>
       <span class="accordion-title-wrap">
         <div class="accordion-title" data-bm="Da'wah Comic" data-en="Da'wah Comic"></div>
@@ -525,10 +570,9 @@
       <div class="accordion-body">
 
         <div class="subsection-label tight" data-bm="Video Tutorial" data-en="Video Tutorial"></div>
-        <a href="#" target="_blank" rel="noopener" class="btn-cta">
+        <a href="https://youtu.be/5XhFhKoidJ8" target="_blank" rel="noopener" class="btn-cta">
           <span data-bm="▶ Tonton Tutorial Da'wah Comic" data-en="▶ Watch Da'wah Comic Tutorial"></span>
         </a>
-        <div class="placeholder-note" data-bm="⚠️ Placeholder — ganti dengan link video sebenar." data-en="⚠️ Placeholder — replace with actual video link."></div>
 
         <div class="subsection-label" data-bm="Webapp Thinkerz" data-en="Thinkerz Webapp"></div>
         <a href="https://dawah-comic-studio-4odq.vercel.app/" target="_blank" rel="noopener" class="link-row webapp">
@@ -564,7 +608,7 @@
   <!-- 4. DA'WAH MUSIC -->
   <div class="accordion" id="acc-4">
     <button class="accordion-head" onclick="toggleAccordion('acc-4')">
-      <span class="accordion-num">04</span>
+      <span class="accordion-num">05</span>
       <span class="accordion-icon-box">🎵</span>
       <span class="accordion-title-wrap">
         <div class="accordion-title" data-bm="Da'wah Music" data-en="Da'wah Music"></div>
@@ -576,10 +620,9 @@
       <div class="accordion-body">
 
         <div class="subsection-label tight" data-bm="Video Tutorial" data-en="Video Tutorial"></div>
-        <a href="#" target="_blank" rel="noopener" class="btn-cta">
+        <a href="https://youtu.be/SY5DyTjl1sQ" target="_blank" rel="noopener" class="btn-cta">
           <span data-bm="▶ Tonton Tutorial Da'wah Music" data-en="▶ Watch Da'wah Music Tutorial"></span>
         </a>
-        <div class="placeholder-note" data-bm="⚠️ Placeholder — ganti dengan link video sebenar." data-en="⚠️ Placeholder — replace with actual video link."></div>
 
         <div class="subsection-label" data-bm="AI Assistant" data-en="AI Assistant"></div>
         <div class="assist-row">
@@ -650,7 +693,7 @@
   document.addEventListener('DOMContentLoaded', function() {
     setLang('bm');
     // Open first accordion by default
-    document.getElementById('acc-1').classList.add('open');
+    document.getElementById('acc-0').classList.add('open');
   });
 </script>
 
